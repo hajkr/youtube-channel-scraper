@@ -9,7 +9,8 @@ build_and_run:
 to_container:
 	echo -ne "\033]0;$(app_name)\007" && docker exec -it $(app_name) bash
 
-requirements:
+init:
+	touch requirements.txt
 	pip freeze > requirements.txt
 
 install:
