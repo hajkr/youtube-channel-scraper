@@ -24,5 +24,5 @@ make run
 ```bash
 make to_container
 
-python main.py
+python main.py "yt_channel_url" --filename "output/videos.csv"
 ```
