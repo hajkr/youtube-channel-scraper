@@ -13,8 +13,5 @@ print(args)
 crawler = Crawler(args.channel_url, stop_id=args.stop_video_id)
 crawled_videos = crawler.crawl()
 
-if len(crawled_videos):
-    write_to_csv(crawled_videos, args.filename)
-    print(f"Saved to: {args.filename}")
-else:
-    print("No videos found.")
+write_to_csv(crawled_videos, args.filename)
+print(f"{len(crawled_videos)} videos saved to {args.filename}")
