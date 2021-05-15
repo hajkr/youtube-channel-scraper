@@ -1,0 +1,8 @@
+version: '3.5'
+services:
+  youtube_scraper:
+    container_name: youtube_scraper
+    build: .
+    command: tail -f /dev/null
+    volumes:
+      - .:/app
