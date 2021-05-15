@@ -37,9 +37,13 @@ def build_browser():
     return webdriver.Chrome('chromedriver', chrome_options=chrome_options)
 
 
-def url_to_thumbnail(url):
+def extract_video_id(url):
     parsed = urlparse.urlparse(url)
-    video_id = parse_qs(parsed.query)['v'][0]
+    return parse_qs(parsed.query)['v'][0]
+
+
+def url_to_thumbnail(url):
+    video_id = extract_video_id(url)
     return f"https://i3.ytimg.com/vi/{video_id}/hqdefault.jpg"
 
 
@@ -51,9 +55,10 @@ VIDEO_PUBLISHED_AT_SELECTOR = 'ytd-video-primary-info-renderer #date yt-formatte
 
 
 class Crawler:
-    def __init__(self, channel_url):
+    def __init__(self, channel_url, stop_id=None):
         self.channel_url = channel_url
         self.browser = build_browser()
+        self.stop_id = stop_id
 
     def __del__(self):
         self.browser.close()
@@ -77,10 +82,15 @@ class Crawler:
         return crawled_videos
 
     def extract_video_urls(self):
-        return list(map(
-            lambda element: element.find_element_by_css_selector('ytd-thumbnail a').get_attribute('href'),
-            self.find_video_elements()
-        ))
+        urls = []
+        for element in self.find_video_elements():
+            url = element.find_element_by_css_selector('ytd-thumbnail a').get_attribute('href')
+            if self.is_stop_url(url):
+                break
+
+            urls.append(url)
+
+        return urls
 
     def extract_video_attributes(self, url):
         return {
@@ -120,3 +130,7 @@ class Crawler:
     def load_next_page(self):
         self.browser.execute_script("window.scrollTo(0, Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight))")
         WebDriverWait(self.browser, 5).until(ElementsLengthChanges(VIDEOS_SELECTOR))
+
+    def is_stop_url(self, url):
+        video_id = extract_video_id(url)
+        return video_id == self.stop_id
