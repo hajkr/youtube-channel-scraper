@@ -17,4 +17,4 @@ crawler = Crawler("https://www.youtube.com/user/anzecokl")
 crawled_videos = crawler.crawl()
 
 print("Writing to csv...")
-write_to_csv(crawled_videos, "videos.csv")
+write_to_csv(crawled_videos, "output/videos.csv")
