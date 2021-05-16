@@ -1,3 +1,7 @@
 **.DS_Store
 .idea/
 __pycache__
+
+build/
+dist/
+hajkr_youtube_scraper.egg-info/
