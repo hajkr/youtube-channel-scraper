@@ -90,6 +90,7 @@ class Crawler:
 
             urls.append(url)
 
+        urls.reverse()
         return urls
 
     def extract_video_attributes(self, url):
