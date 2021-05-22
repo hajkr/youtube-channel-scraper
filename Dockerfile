@@ -1,7 +1,6 @@
 FROM python:latest
 
 ENV APP_HOME=/app
-ENV PATH=/chromedriver:$PATH
 
 WORKDIR $APP_HOME
 
