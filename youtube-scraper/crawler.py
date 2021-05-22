@@ -8,6 +8,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.proxy import Proxy
+from selenium.webdriver.common.proxy import ProxyType
 
 
 class ElementsLengthChanges(object):
@@ -29,12 +31,25 @@ class ElementsLengthChanges(object):
         return self.driver.find_elements_by_css_selector(self.selector)
 
 
-def build_browser():
+def build_browser(proxy_ip=None):
+    capabilities = webdriver.DesiredCapabilities.CHROME
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    return webdriver.Chrome('/chromedriver/chromedriver', chrome_options=chrome_options)
+
+    if proxy_ip:
+        proxy = Proxy()
+        proxy.proxy_type = ProxyType.MANUAL
+        proxy.http_proxy = proxy
+        proxy.ssl_proxy = proxy
+        proxy.add_to_capabilities(capabilities)
+
+    return webdriver.Chrome(
+        '/chromedriver/chromedriver',
+        desired_capabilities=capabilities,
+        chrome_options=chrome_options
+    )
 
 
 def extract_video_id(url):
@@ -55,9 +70,9 @@ VIDEO_PUBLISHED_AT_SELECTOR = 'ytd-video-primary-info-renderer #date yt-formatte
 
 
 class Crawler:
-    def __init__(self, channel_url, stop_id=None, max_videos=None):
+    def __init__(self, channel_url, stop_id=None, max_videos=None, proxy_ip=None):
         self.channel_url = channel_url
-        self.browser = build_browser()
+        self.browser = build_browser(proxy_ip=proxy_ip)
         self.stop_id = stop_id
         self.max_videos = max_videos
 

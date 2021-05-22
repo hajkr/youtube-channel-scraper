@@ -7,6 +7,7 @@ parser.add_argument('channel_url', type=str, help="Youtube channel URL")
 parser.add_argument('--filename', type=str, help="Output file", default='output/videos.csv')
 parser.add_argument('--stop_video_id', type=str, help="Youtube video ID that indicates to stop crawling", default=None)
 parser.add_argument('--max_videos', type=int, help="Max videos to crawl", default=1000)
+parser.add_argument('--proxy', type=str, help="Max videos to crawl", default=None)
 args = parser.parse_args()
 
 print(args)
