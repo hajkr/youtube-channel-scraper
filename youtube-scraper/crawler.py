@@ -55,10 +55,11 @@ VIDEO_PUBLISHED_AT_SELECTOR = 'ytd-video-primary-info-renderer #date yt-formatte
 
 
 class Crawler:
-    def __init__(self, channel_url, stop_id=None):
+    def __init__(self, channel_url, stop_id=None, max_videos=None):
         self.channel_url = channel_url
         self.browser = build_browser()
         self.stop_id = stop_id
+        self.max_videos = max_videos
 
     def __del__(self):
         self.browser.close()
@@ -91,7 +92,7 @@ class Crawler:
             urls.append(url)
 
         urls.reverse()
-        return urls
+        return urls[:self.max_videos]
 
     def extract_video_attributes(self, url):
         return {
