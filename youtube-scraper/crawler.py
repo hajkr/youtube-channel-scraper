@@ -133,8 +133,12 @@ class Crawler:
     def navigate_to_videos(self):
         videos_url = f'{self.channel_url}/videos'
         self.browser.get(videos_url)
-        WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button')))
-        self.browser.find_element_by_css_selector('button').click()
+
+        try:
+            WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button')))
+            self.browser.find_element_by_css_selector('button').click()
+        finally:
+            print("Prepage skipped")
 
     def navigate_to_video(self, url):
         self.browser.get(url)
