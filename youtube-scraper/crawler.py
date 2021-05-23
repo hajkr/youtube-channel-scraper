@@ -137,8 +137,8 @@ class Crawler:
         try:
             WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button')))
             self.browser.find_element_by_css_selector('button').click()
-        finally:
-            print("Prepage skipped")
+        except TimeoutException:
+            print("Prepage doesn't exist")
 
     def navigate_to_video(self, url):
         self.browser.get(url)
