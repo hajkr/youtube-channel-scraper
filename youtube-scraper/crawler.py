@@ -8,8 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.proxy import Proxy
-from selenium.webdriver.common.proxy import ProxyType
 
 
 class ElementsLengthChanges(object):
@@ -34,16 +32,23 @@ class ElementsLengthChanges(object):
 def build_browser(proxy_ip=None):
     capabilities = webdriver.DesiredCapabilities.CHROME
     chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument("--disable-notifications")
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--verbose')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--disable-software-rasterizer')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument(f'--proxy-server=https://{proxy_ip}')
 
-    if proxy_ip:
-        proxy = Proxy()
-        proxy.proxy_type = ProxyType.MANUAL
-        proxy.http_proxy = proxy
-        proxy.ssl_proxy = proxy
-        proxy.add_to_capabilities(capabilities)
+    webdriver.DesiredCapabilities.CHROME['proxy'] = {
+        "httpProxy": proxy_ip,
+        "ftpProxy": proxy_ip,
+        "sslProxy": proxy_ip,
+        "proxyType": "MANUAL",
+
+    }
+    webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = True
 
     return webdriver.Chrome(
         '/chromedriver/chromedriver',
