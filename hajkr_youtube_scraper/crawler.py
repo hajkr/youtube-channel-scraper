@@ -39,16 +39,17 @@ def build_browser(proxy_ip=None):
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--disable-software-rasterizer')
     chrome_options.add_argument('--headless')
-    chrome_options.add_argument(f'--proxy-server=https://{proxy_ip}')
 
-    webdriver.DesiredCapabilities.CHROME['proxy'] = {
-        "httpProxy": proxy_ip,
-        "ftpProxy": proxy_ip,
-        "sslProxy": proxy_ip,
-        "proxyType": "MANUAL",
+    if proxy_ip:
+        chrome_options.add_argument(f'--proxy-server=https://{proxy_ip}')
+        webdriver.DesiredCapabilities.CHROME['proxy'] = {
+            "httpProxy": proxy_ip,
+            "ftpProxy": proxy_ip,
+            "sslProxy": proxy_ip,
+            "proxyType": "MANUAL",
 
-    }
-    webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = True
+        }
+        webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = True
 
     return webdriver.Chrome(
         '/chromedriver/chromedriver',
