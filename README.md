@@ -51,7 +51,10 @@ make run
 
 ### Usage
 
+You should run it in a docker container otherwise you need to set up chrome driver in your environment.
+
 ```bash
+make run
 make to_container
 
 python hajkr_youtube_scraper "https://www.youtube.com/channel/CHANNEL_ID"
