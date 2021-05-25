@@ -1,5 +1,5 @@
 import argparse
-from crawler import Crawler
+from scraper import YoutubeScraper
 from utils import write_to_csv
 from selenium.common.exceptions import TimeoutException
 
@@ -15,12 +15,12 @@ args = parser.parse_args()
 
 print(args)
 
-crawler = Crawler(args.channel_url, stop_id=args.stop_video_id, max_videos=args.max_videos, proxy_ip=args.proxy)
+scraper = YoutubeScraper(args.channel_url, stop_id=args.stop_video_id, max_videos=args.max_videos, proxy_ip=args.proxy)
 try:
-    crawled_videos = crawler.crawl()
-    write_to_csv(crawled_videos, args.filename)
-    print(f"{len(crawled_videos)} videos saved to {args.filename}")
+    scraped_videos = scraper.scrape()
+    write_to_csv(scraped_videos, args.filename)
+    print(f"{len(scraped_videos)} videos saved to {args.filename}")
 except TimeoutException as e:
     print("An exception occurred: ", e)
-    crawler.browser.get_screenshot_as_file(args.screenshot_filename)
+    scraper.browser.get_screenshot_as_file(args.screenshot_filename)
 

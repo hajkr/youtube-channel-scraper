@@ -1,1 +1,1 @@
-import hajkr_youtube_scraper.crawler
+import hajkr_youtube_scraper.scraper

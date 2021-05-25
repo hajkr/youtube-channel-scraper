@@ -1,5 +1,3 @@
-import time
-from pprint import pprint
 import urllib.parse as urlparse
 from urllib.parse import parse_qs
 from selenium import webdriver
@@ -75,7 +73,7 @@ VIDEO_AUTHOR_SELECTOR = 'ytd-video-secondary-info-renderer ytd-channel-name a'
 VIDEO_PUBLISHED_AT_SELECTOR = 'ytd-video-primary-info-renderer #date yt-formatted-string'
 
 
-class Crawler:
+class YoutubeScraper:
     def __init__(self, channel_url, stop_id=None, max_videos=None, proxy_ip=None):
         self.channel_url = channel_url
         self.browser = build_browser(proxy_ip=proxy_ip)
@@ -85,7 +83,7 @@ class Crawler:
     def __del__(self):
         self.browser.close()
 
-    def crawl(self):
+    def scrape(self):
         print(self.channel_url)
 
         self.navigate_to_videos()
@@ -94,14 +92,14 @@ class Crawler:
         print("Extracting video urls...")
         video_urls = self.extract_video_urls()
 
-        crawled_videos = []
+        scraped_videos = []
         for url in video_urls:
             print(url)
 
             self.navigate_to_video(url)
-            crawled_videos.append(self.extract_video_attributes(url))
+            scraped_videos.append(self.extract_video_attributes(url))
 
-        return crawled_videos
+        return scraped_videos
 
     def extract_video_urls(self):
         urls = []

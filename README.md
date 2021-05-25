@@ -27,10 +27,10 @@ pip install hajkr_youtube_scraper
 ### Usage
 
 ```python
-from hajkr_youtube_scraper.crawler import Crawler
+from hajkr_youtube_scraper.scraper import YoutubeScraper
 
-crawler = Crawler(channel_url)
-crawled_videos = crawler.crawl()
+scraper = YoutubeScraper(channel_url)
+crawled_videos = scraper.scrape()
 ```
 
 ## Use as a script
