@@ -21,7 +21,7 @@ Video attributes:
 ### Installation
 
 ```bash
-pip3 install hajkr_youtube_scraper
+pip install hajkr_youtube_scraper
 ```
 
 ### Usage
@@ -29,13 +29,8 @@ pip3 install hajkr_youtube_scraper
 ```python
 from hajkr_youtube_scraper.crawler import Crawler
 
-crawler = Crawler(channel_url, stop_id=stop_video_id, max_videos=max_videos, proxy_ip=proxy)
-try:
-    crawled_videos = crawler.crawl()
-except TimeoutException as e:
-    # Works well for debugging
-    print("An exception occurred: ", e)
-    crawler.browser.get_screenshot_as_file(screenshot_path)
+crawler = Crawler(channel_url)
+crawled_videos = crawler.crawl()
 ```
 
 ## Use as a script
