@@ -12,6 +12,10 @@ RUN apt-get update && apt-get install build-essential bash cmake pkg-config -y
 COPY ./scripts $APP_HOME/scripts
 RUN $APP_HOME/scripts/install_chromedriver.sh
 
+# Poetry
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+
 # Install python libraries
-COPY requirements.txt $APP_HOME/
-RUN pip install -r requirements.txt
+COPY pyproject.toml $APP_HOME/
+COPY poetry.lock $APP_HOME/
+RUN poetry install

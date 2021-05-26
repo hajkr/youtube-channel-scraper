@@ -40,25 +40,7 @@ crawled_videos = scraper.scrape()
 
 ## CLI usage
 
-### Install and run in Docker
-
-Using docker there is no need to manually install chrome driver in your environment.
-
 ```bash
-git clone https://github.com/hajkr/youtube-channel-scraper.git
-cd youtube_channel_scraper
-
-make run
-```
-
-### Usage
-
-You should run it in a docker container otherwise you need to set up chrome driver in your environment.
-
-```bash
-make run
-make to_container
-
 python youtube_channel_scraper "https://www.youtube.com/channel/CHANNEL_ID"
 ```
 
@@ -78,4 +60,25 @@ optional arguments:
   --proxy PROXY         Proxy IP
   --screenshot_filename SCREENSHOT_FILENAME
                         Path to exceptions screenshot
+```
+
+## Usage with Docker
+
+### Why?
+
+When running `youtube-channel-scraper` in a Docker container there is no need to manually install chrome driver in your environment.
+
+### How?
+
+```bash
+git clone https://github.com/hajkr/youtube-channel-scraper.git
+cd youtube_channel_scraper
+
+# Builds the container when running for the first time
+make run
+
+# Enter the container
+make to_container
+
+python youtube_channel_scraper "https://www.youtube.com/channel/CHANNEL_ID"
 ```

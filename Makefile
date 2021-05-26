@@ -1,4 +1,4 @@
-app_name = youtube_scraper
+app_name = youtube_channel_scraper
 
 run:
 	echo -ne "\033]0;$(app_name)\007" && docker compose up
@@ -9,16 +9,11 @@ build_and_run:
 to_container:
 	echo -ne "\033]0;$(app_name)\007" && docker exec -it $(app_name) bash
 
-init:
-	touch requirements.txt
-	pip freeze > requirements.txt
-
 install:
-	pip install -r requirements.txt
+	poetry install
 
 compile:
-	rm -rf build/ dist/ youtube_channel_scraper.egg-info/
-	python3 setup.py sdist bdist_wheel
+	poetry build
 
 upload:
-	twine upload dist/*
+	poetry publish
