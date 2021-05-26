@@ -14,7 +14,9 @@ Video attributes:
 
 ## Requirements
 
-* Install chromedriver at `/chromedriver`. For more details refer to [scripts/install_chromedriver.sh](scripts/install_chromedriver.sh)
+Install chromedriver at `/chromedriver`. For more details refer to [scripts/install_chromedriver.sh](scripts/install_chromedriver.sh).
+
+Alternatively you can use the library inside a Docker container. This way you don't need to manually install the chromedriver. Have a look at [Usage with Docker](#usage-with-docker).
 
 ## Install
 
@@ -74,7 +76,7 @@ When running `youtube-channel-scraper` in a Docker container there is no need to
 git clone https://github.com/hajkr/youtube-channel-scraper.git
 cd youtube_channel_scraper
 
-# Builds the container when running for the first time
+# Run the container and build it when running for the first time
 make run
 
 # Enter the container

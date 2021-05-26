@@ -12,8 +12,12 @@ to_container:
 install:
 	poetry install
 
-compile:
+release:
+	make build
+	make publish
+
+build:
 	poetry build
 
-upload:
+publish:
 	poetry publish
