@@ -41,7 +41,7 @@ crawled_videos = scraper.scrape()
 ## CLI usage
 
 ```bash
-youtube_channel_scraper "https://www.youtube.com/channel/CHANNEL_ID"
+youtube-channel-scraper "https://www.youtube.com/channel/CHANNEL_ID"
 ```
 
 ### Available arguments
