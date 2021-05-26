@@ -1,6 +1,6 @@
-# YouTube scraper
+# YouTube Channel Scraper
 
-A Python script that scrapes videos from a Youtube channel.
+Scrapes videos from a YouTube channel using Python.
 
 It takes a YouTube channel URL as an input and produces a list of videos as an output.
 
@@ -12,34 +12,41 @@ Video attributes:
 * `published_at`
 * `thumbnail`
 
-## Use as a library
-
-### Requirements
+## Requirements
 
 * Install chromedriver at `/chromedriver`. For more details refer to [scripts/install_chromedriver.sh](scripts/install_chromedriver.sh)
 
-### Installation
+## Install
 
 ```bash
-pip install hajkr_youtube_scraper
+pip install youtube-channel-scraper
 ```
 
-### Usage
+## Usage
 
 ```python
-from hajkr_youtube_scraper.scraper import YoutubeScraper
+from youtube_channel_scraper.scraper import YoutubeScraper
 
 scraper = YoutubeScraper(channel_url)
 crawled_videos = scraper.scrape()
 ```
 
-## Use as a script
+### Optional parameters
 
-### Installation
+* *stop_id:* stop scraping when this video ID is encountered. Older videos are always scraped first.
+* *max_videos:* maximum amount of videos to scrape
+* *proxy_ip:* proxy IP with port 
+
+
+## CLI usage
+
+### Install and run in Docker
+
+Using docker there is no need to manually install chrome driver in your environment.
 
 ```bash
-git clone https://github.com/hajkr/youtube-scraper.git
-cd youtube_scraper
+git clone https://github.com/hajkr/youtube-channel-scraper.git
+cd youtube_channel_scraper
 
 make run
 ```
@@ -52,7 +59,7 @@ You should run it in a docker container otherwise you need to set up chrome driv
 make run
 make to_container
 
-python hajkr_youtube_scraper "https://www.youtube.com/channel/CHANNEL_ID"
+python youtube_channel_scraper "https://www.youtube.com/channel/CHANNEL_ID"
 ```
 
 ### Available arguments

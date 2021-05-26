@@ -17,7 +17,7 @@ install:
 	pip install -r requirements.txt
 
 compile:
-	rm -rf build/ dist/ hajkr_youtube_scraper.egg-info/
+	rm -rf build/ dist/ youtube_channel_scraper.egg-info/
 	python3 setup.py sdist bdist_wheel
 
 upload:

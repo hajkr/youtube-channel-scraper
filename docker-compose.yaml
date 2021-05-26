@@ -1,7 +1,7 @@
 version: '3.5'
 services:
-  youtube_scraper:
-    container_name: youtube_scraper
+  youtube_channel_scraper:
+    container_name: youtube_channel_scraper
     build: .
     command: tail -f /dev/null
     volumes:

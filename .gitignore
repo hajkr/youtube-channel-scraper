@@ -4,4 +4,4 @@ __pycache__
 
 build/
 dist/
-hajkr_youtube_scraper.egg-info/
+youtube_channel_scraper.egg-info/
