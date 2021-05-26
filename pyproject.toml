@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "youtube-channel-scraper"
-version = "0.1.0"
+version = "0.1.2"
 description = "Scrape videos from YouTube channels."
 authors = ["Tadej Hribar <tadej.996@gmail.com>"]
 license = "MIT"
@@ -8,7 +8,7 @@ readme = "README.md"
 repository = "https://github.com/hajkr/youtube-channel-scraper"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=2.7"
 selenium = "^3.141.0"
 
 [tool.poetry.dev-dependencies]
