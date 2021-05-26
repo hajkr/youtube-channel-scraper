@@ -1,6 +1,8 @@
 FROM python:3.9.5
 
 ENV APP_HOME=/app
+ENV HOME=/root
+ENV PATH=$PATH:/root/.poetry/bin
 
 WORKDIR $APP_HOME
 
@@ -13,7 +15,7 @@ COPY ./scripts $APP_HOME/scripts
 RUN $APP_HOME/scripts/install_chromedriver.sh
 
 # Poetry
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 # Install python libraries
 COPY pyproject.toml $APP_HOME/
