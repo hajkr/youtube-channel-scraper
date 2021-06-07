@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "youtube-channel-scraper"
-version = "0.1.2"
+version = "0.1.3"
 description = "Scrape videos from YouTube channels."
 authors = ["Tadej Hribar <tadej.996@gmail.com>"]
 license = "MIT"
