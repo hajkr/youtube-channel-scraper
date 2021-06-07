@@ -110,7 +110,9 @@ class YoutubeScraper:
 
             urls.append(url)
 
-        urls.reverse()
+        if self.stop_id is None:
+            urls.reverse()
+
         return urls[:self.max_videos]
 
     def extract_video_attributes(self, url):
